@@ -13,7 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query AllCharacters {\n    characters {\n      results {\n        id\n        gender\n        name\n        image\n        status\n        species\n        episode {\n          id\n          name\n        }\n        location {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.AllCharactersDocument,
+    "\n  fragment CharacterFragment on Character {\n    id\n    gender\n    name\n    image\n    status\n    species\n    episode {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n": types.CharacterFragmentFragmentDoc,
+    "\n  query CharacterDetails($characterId: ID!) {\n    character(id: $characterId) {\n      ...CharacterFragment\n    }\n  }\n": types.CharacterDetailsDocument,
+    "\n  query AllCharacters {\n    characters {\n      results {\n        ...CharacterFragment\n      }\n    }\n  }\n": types.AllCharactersDocument,
 };
 
 /**
@@ -33,7 +35,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query AllCharacters {\n    characters {\n      results {\n        id\n        gender\n        name\n        image\n        status\n        species\n        episode {\n          id\n          name\n        }\n        location {\n          id\n          name\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query AllCharacters {\n    characters {\n      results {\n        id\n        gender\n        name\n        image\n        status\n        species\n        episode {\n          id\n          name\n        }\n        location {\n          id\n          name\n        }\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CharacterFragment on Character {\n    id\n    gender\n    name\n    image\n    status\n    species\n    episode {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  fragment CharacterFragment on Character {\n    id\n    gender\n    name\n    image\n    status\n    species\n    episode {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query CharacterDetails($characterId: ID!) {\n    character(id: $characterId) {\n      ...CharacterFragment\n    }\n  }\n"): (typeof documents)["\n  query CharacterDetails($characterId: ID!) {\n    character(id: $characterId) {\n      ...CharacterFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query AllCharacters {\n    characters {\n      results {\n        ...CharacterFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query AllCharacters {\n    characters {\n      results {\n        ...CharacterFragment\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
