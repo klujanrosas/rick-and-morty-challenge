@@ -3,6 +3,7 @@ import { Divider, Heading, Spinner } from "@chakra-ui/react";
 
 import { useCharacter } from "@/graphql/hooks/character";
 
+import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Head } from "@/components/head";
 
@@ -14,21 +15,28 @@ export function CharacterScreen() {
   const { characterId } = router.query;
   const { data, isLoading } = useCharacter(characterId as string);
 
-  if (isLoading) return <Spinner />;
-
   return (
     <>
-      <Head>
-        <title>{`Rick and Morty Challenge | ${data?.character?.name}`}</title>
-      </Head>
-      <main>
-        <Heading as="h3" mb={6}>
-          {data?.character?.name}
-        </Heading>
-        <CharacterDetails character={data?.character ?? null} />
-        <Divider my={4} />
-        <CharacterEpisodes character={data?.character ?? null} />
-      </main>
+      <Navigation />
+      {isLoading ? (
+        <main>
+          <Spinner />
+        </main>
+      ) : (
+        <>
+          <Head>
+            <title>{`Rick and Morty Challenge | ${data?.character?.name}`}</title>
+          </Head>
+          <main>
+            <Heading as="h3" mb={6}>
+              {data?.character?.name}
+            </Heading>
+            <CharacterDetails character={data?.character ?? null} />
+            <Divider my={4} />
+            <CharacterEpisodes character={data?.character ?? null} />
+          </main>
+        </>
+      )}
       <Footer />
     </>
   );

@@ -4,6 +4,7 @@ import { Heading } from "@chakra-ui/react";
 
 import { useCharacters } from "@/graphql/hooks/characters";
 
+import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Head } from "@/components/head";
 
@@ -19,6 +20,7 @@ export function HomeScreen() {
   return (
     <>
       <Head />
+      <Navigation />
       <main className={clsx(styles.main, inter.className)}>
         <Heading as="h3" mb={6}>
           Rick and Morty Characters
