@@ -11,5 +11,6 @@ export function useCharacter(characterId: string) {
         characterId,
       });
     },
+    enabled: Boolean(characterId),
   });
 }

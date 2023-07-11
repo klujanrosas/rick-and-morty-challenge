@@ -62,19 +62,27 @@ export function CharacterEpisodes({ character }: CharacterEpisodesProps) {
 
             return (
               <AccordionItem key={episode.id}>
-                <h2>
-                  <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
-                      <Text>
-                        <strong>Ep.{episode.id}</strong>: {episode.name}
-                      </Text>
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel>
-                  <OtherCharactersInEpisode episodeId={episode.id!} />
-                </AccordionPanel>
+                {({ isExpanded }) => {
+                  return (
+                    <>
+                      <h2>
+                        <AccordionButton>
+                          <Box as="span" flex="1" textAlign="left">
+                            <Text>
+                              <strong>Ep.{episode.id}</strong>: {episode.name}
+                            </Text>
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel>
+                        {isExpanded && (
+                          <OtherCharactersInEpisode episodeId={episode.id!} />
+                        )}
+                      </AccordionPanel>
+                    </>
+                  );
+                }}
               </AccordionItem>
             );
           })}

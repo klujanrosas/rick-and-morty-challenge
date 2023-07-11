@@ -20,5 +20,6 @@ export function useEpisode(id: string) {
     queryFn: async () => {
       return client.request(episodeDetailsQueryDocument, { episodeId: id });
     },
+    enabled: Boolean(id),
   });
 }
