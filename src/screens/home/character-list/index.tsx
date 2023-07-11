@@ -15,11 +15,13 @@ import Link from "next/link";
 
 export function CharacterListItem({ character }: CharacterListItemProps) {
   if (!character) return null;
+
   return (
     <Link href={`/character/${character.id}`} legacyBehavior passHref>
       <Card
         key={character.id}
         cursor="pointer"
+        flexBasis={["100%", null, null, null, "49%"]}
         _hover={{
           boxShadow: "0 0 0 1px #000000",
         }}
@@ -46,7 +48,6 @@ export function CharacterListItem({ character }: CharacterListItemProps) {
             </Flex>
           </Flex>
         </CardHeader>
-        <CardBody>something</CardBody>
       </Card>
     </Link>
   );
@@ -58,7 +59,14 @@ export function CharacterList({ isLoading, characters }: CharacterListProps) {
   }
 
   return (
-    <Flex gap={4} direction="column">
+    <Flex
+      rowGap="24px"
+      columnGap="24px"
+      justifyContent="space-between"
+      width="100%"
+      direction="row"
+      flexWrap="wrap"
+    >
       {characters?.map((character) => (
         <CharacterListItem key={character?.id} character={character} />
       ))}
