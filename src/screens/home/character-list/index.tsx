@@ -55,7 +55,7 @@ export function CharacterListItem({ character }: CharacterListItemProps) {
 
 export function CharacterList({ isLoading, characters }: CharacterListProps) {
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner data-testid="character-list-spinner" />;
   }
 
   return (
