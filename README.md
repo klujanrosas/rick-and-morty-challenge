@@ -1,4 +1,11 @@
+# rick-and-morty-challenge
+
 Deployed at: https://rick-and-morty.kennethlujan.com/
+
+Things I would like to add in the future:
+
+- E2E Testing (Playwright/Cypress)
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -15,7 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  fragment CharacterFragment on Character {\n    id\n    gender\n    name\n    image\n    status\n    species\n    episode {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n": types.CharacterFragmentFragmentDoc,
     "\n  query CharacterDetails($characterId: ID!) {\n    character(id: $characterId) {\n      ...CharacterFragment\n    }\n  }\n": types.CharacterDetailsDocument,
-    "\n  query AllCharacters($page: Int) {\n    characters(page: $page) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n": types.AllCharactersDocument,
+    "\n  query AllCharacters($page: Int, $filter: FilterCharacter) {\n    characters(page: $page, filter: $filter) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n": types.AllCharactersDocument,
     "\n  fragment EpisodeFragment on Episode {\n    id\n    name\n    air_date\n    characters {\n      ...CharacterFragment\n    }\n  }\n": types.EpisodeFragmentFragmentDoc,
     "\n  query EpisodesByIds($ids: [ID!]!) {\n    episodesByIds(ids: $ids) {\n      ...EpisodeFragment\n    }\n  }\n": types.EpisodesByIdsDocument,
     "\n  query EpisodeDetails($episodeId: ID!) {\n    episode(id: $episodeId) {\n      ...EpisodeFragment\n    }\n  }\n": types.EpisodeDetailsDocument,
@@ -46,7 +46,7 @@ export function graphql(source: "\n  query CharacterDetails($characterId: ID!) {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query AllCharacters($page: Int) {\n    characters(page: $page) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n"): (typeof documents)["\n  query AllCharacters($page: Int) {\n    characters(page: $page) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query AllCharacters($page: Int, $filter: FilterCharacter) {\n    characters(page: $page, filter: $filter) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n"): (typeof documents)["\n  query AllCharacters($page: Int, $filter: FilterCharacter) {\n    characters(page: $page, filter: $filter) {\n      results {\n        ...CharacterFragment\n      }\n      info {\n        count\n        pages\n        next\n        prev\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
