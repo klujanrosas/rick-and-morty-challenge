@@ -77,3 +77,11 @@ test("renders a list of characters", async () => {
     });
   });
 });
+
+test("renders empty state if no characters found", async () => {
+  render(<CharacterList characters={[]} isLoading={false} />, {
+    wrapper: MemoryRouterProvider,
+  });
+
+  expect(screen.getByTestId("character-list-empty")).toBeInTheDocument();
+});

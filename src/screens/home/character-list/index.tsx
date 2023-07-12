@@ -58,6 +58,10 @@ export function CharacterList({ isLoading, characters }: CharacterListProps) {
     return <Spinner data-testid="character-list-spinner" />;
   }
 
+  if (!characters.length) {
+    return <Text data-testid="character-list-empty">No characters found</Text>;
+  }
+
   return (
     <Flex
       rowGap="24px"
